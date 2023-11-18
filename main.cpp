@@ -2,6 +2,8 @@
 
 int main() {
     // Call suffixArray here
+
+    //suffixArray(int* s, int* SA, int n, int K)
     
     return 0;
 }

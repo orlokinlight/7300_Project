@@ -9,6 +9,8 @@ int main() {
     // Example usage
     std::string input = "banana";
     int n = input.size();
+
+    SA sa1;
     
     // Append sentinel characters
     input += '\0';
@@ -22,7 +24,7 @@ int main() {
 
     // Construct the suffix array using the provided function
     std::vector<int> sa(n);
-    suffixArray(s.data(), sa.data(), n, 255);
+    sa1.suffixArray(s.data(), sa.data(), n, 255);
 
     // Print the result
     std::cout << "Suffix Array: ";

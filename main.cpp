@@ -1,12 +1,5 @@
 #include <iostream>
-
-int main() {
-    // Call suffixArray here
-
-    //suffixArray(int* s, int* SA, int n, int K)
-    
-    return 0;
-}
+#include <vector>
 
 inline bool leq(int a1, int a2, int b1, int b2) // lexicographic order
 {
@@ -137,4 +130,33 @@ void suffixArray(int* s, int* SA, int n, int K) {
     }
     delete [] s12; delete [] SA12; delete [] SA0; delete [] s0;
     
+}
+
+int main() {
+    // Example usage
+    std::string input = "banana";
+    int n = input.size();
+    
+    // Append sentinel characters
+    input += '\0';
+    input += '\0';
+    
+    // Convert the input string to an array of integers
+    std::vector<int> s(n);
+    for (int i = 0; i < n; ++i) {
+        s[i] = input[i];
+    }
+
+    // Construct the suffix array using the provided function
+    std::vector<int> sa(n);
+    suffixArray(s.data(), sa.data(), n, 255);
+
+    // Print the result
+    std::cout << "Suffix Array: ";
+    for (int index : sa) {
+        std::cout << index << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
 }

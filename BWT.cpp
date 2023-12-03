@@ -1,47 +1,37 @@
 #include <iostream>
-#include <string>
 #include <vector>
 #include <algorithm>
 
-// Structure to store the rotations and their indices
-struct Rotation {
-    std::string rotation;
-    int index;
-};
-
 // Function to perform Burrows-Wheeler Transform
-std::string burrowsWheelerTransform(const std::string& input) {
-    // Create a vector to store rotations
-    std::vector<Rotation> rotations;
+static std::string bwtTransform(std::vector<int>& suffixArray, std::string& originalString) {
+    int n = suffixArray.size();
+    std::string transformedString;
 
-    // Generate all rotations of the input string
-    for (int i = 0; i < input.length(); ++i) {
-        rotations.push_back({input.substr(i) + input.substr(0, i), i});
+    // Construct the Burrows-Wheeler Transform
+    for (int i = 0; i < n; ++i) {
+        int index = suffixArray[i] - 1;
+        if (index < 0) {
+            index += n;  // Adjust for the sentinel character
+        }
+        transformedString += originalString[index];
     }
 
-    // Sort the rotations lexicographically
-    std::sort(rotations.begin(), rotations.end(), [](const Rotation& a, const Rotation& b) {
-        return a.rotation < b.rotation;
-    });
-
-    // Extract the last column of the sorted rotations
-    std::string bwtResult;
-    for (const auto& rotation : rotations) {
-        int lastCharIndex = rotation.rotation.length() - 1;
-        bwtResult += rotation.rotation[lastCharIndex];
-    }
-
-    return bwtResult;
+    return transformedString;
 }
 
-int main() {
-    // Example usage
-    std::string inputText = "banana";
-    std::string bwtResult = burrowsWheelerTransform(inputText);
+/*int main() {
+    // Example suffix array generated from the previous code
+    std::vector<int> suffixArray = {5, 3, 1, 0, 4, 2};
 
-    // Display the result
-    std::cout << "Original Text: " << inputText << std::endl;
+    // Corresponding original string
+    std::string originalString = "banana\0\0";
+
+    // Perform Burrows-Wheeler Transform
+    std::string bwtResult = bwtTransform(suffixArray, originalString);
+
+    // Print the result
+    std::cout << "Original String: " << originalString << std::endl;
     std::cout << "Burrows-Wheeler Transform: " << bwtResult << std::endl;
 
     return 0;
-}
+}*/

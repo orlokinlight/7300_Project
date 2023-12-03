@@ -10,6 +10,8 @@
 //using namespace std;
 
 int main() {
+    // Example usage
+ //   std::string input = "bananafnjrngbjngjbnrjgnbjrn";
     
     // Replace "your_file_path" with the actual path to the file on your desktop
     std::string file_path = "/Users/josephbrown/Desktop/sample3.txt";
@@ -58,14 +60,27 @@ int main() {
     }
     std::cout << std::endl;
     
+    /* old working function here
     // Perform Burrows-Wheeler Transform
     std::string bwtResult = bwtTransform(sa, input);
 
     // Print the result
     //std::cout << "Original String: " << input << std::endl;
-    std::cout << "Burrows-Wheeler Transform: " << bwtResult << std::endl;
+    std::cout << "Burrows-Wheeler Transform: " << bwtResult << std::endl;*/
+    
+    // Sort the suffix array using the provided function
+    std::sort(sa.begin(), sa.end(),
+              [&input](int a, int b) { return input.substr(a) < input.substr(b); });
+
+    // Perform Burrows-Wheeler Transform
+    std::vector<int> bwtResult = bwtTransform(sa, input);
+
+    // Display the result
+    std::cout << "Burrows-Wheeler Transform (as integers): ";
+    for (int val : bwtResult) {
+        std::cout << val << " ";
+    }
+    std::cout << std::endl;
 
     return 0;
 }
-
-

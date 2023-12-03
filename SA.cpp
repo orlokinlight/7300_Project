@@ -39,9 +39,11 @@ static void radixPass(int* a, int* b, int* r, int n, int K) {// count occurrence
     delete [] counter;
     }
 
+
+
 // find the suffix array SA of s[0..n-1] in {1..K}ˆn
 // require s[n]=s[n+1]=s[n+2]=0, n>=2
-void suffixArray(int* s, int* SA, int n, int K) {
+static void suffixArray(int* s, int* SA, int n, int K) {
     
     int n0 =(n+2)/3;
     int n1 = (n+1)/3;
@@ -132,31 +134,3 @@ void suffixArray(int* s, int* SA, int n, int K) {
     
 }
 
-int main() {
-    // Example usage
-    std::string input = "banana";
-    int n = input.size();
-    
-    // Append sentinel characters
-    input += '\0';
-    input += '\0';
-    
-    // Convert the input string to an array of integers
-    std::vector<int> s(n);
-    for (int i = 0; i < n; ++i) {
-        s[i] = input[i];
-    }
-
-    // Construct the suffix array using the provided function
-    std::vector<int> sa(n);
-    suffixArray(s.data(), sa.data(), n, 255);
-
-    // Print the result
-    std::cout << "Suffix Array: ";
-    for (int index : sa) {
-        std::cout << index << " ";
-    }
-    std::cout << std::endl;
-
-    return 0;
-}

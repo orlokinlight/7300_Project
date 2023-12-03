@@ -1,3 +1,20 @@
+#include "RankedBitmap.hpp"
+#include "WaveletTree.hpp"
+#include "FmIndex.hpp"
+
+//#include <divsufsort.h>
+
+#include <algorithm>
+#include <cassert>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <string>
+#include <vector>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+
 #include <unordered_map>
 //#include </home/kendall/7300_project2/get_alphabet.cpp>
 
